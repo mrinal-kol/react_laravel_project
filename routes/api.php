@@ -9,3 +9,4 @@ Route::get('/users', function () {
         ['id' => 3, 'name' => 'Sita'],
     ];
 });
+?>
