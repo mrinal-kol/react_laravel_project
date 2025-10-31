@@ -81,6 +81,8 @@ export default function Contact() {
                             value={form.message}
                             onChange={handleChange}
                             className="form-textarea"
+                            defaultValue="this is test"
+                            
                         />
                         {errors.message && <span className="error-text">{errors.message}</span>}
                     </div>
