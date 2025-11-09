@@ -1,9 +1,27 @@
-import React from 'react';
+//import React from 'react';
+import React, { useEffect } from 'react';
 import { usePage } from '@inertiajs/react';
 
 export default function Details() {
   // Get data passed from Laravel controller
   const { users } = usePage().props;
+
+  useEffect(() => {
+      const buttons = document.querySelectorAll('.editrec');
+
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          alert('Edit clicked!');
+        });
+      });
+
+      // Cleanup when component updates or unmounts
+      return () => {
+        buttons.forEach((btn) => {
+          btn.removeEventListener('click', () => {});
+        });
+      };
+    }, [users]);
 
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial' }}>
