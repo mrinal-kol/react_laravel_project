@@ -52,50 +52,30 @@ export default function Contact() {
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label className="form-label">Name</label>
-                        <input
-                            type="text"
-                            name="name"
-                            value={form.name}
-                            onChange={handleChange}
-                            className="form-input"
-                        />
+                        <input  type="text" name="name" value={form.name} onChange={handleChange} className="form-input" />
                         {errors.name && <span className="error-text">{errors.name}</span>}
                     </div>
 
                     <div className="form-group">
                         <label className="form-label">Email</label>
-                        <input
-                            type="email"
-                            name="email"
-                            value={form.email}
-                            onChange={handleChange}
-                            className="form-input"
-                        />
+                        <input  type="email" name="email" value={form.email} onChange={handleChange} className="form-input" />
+                        
                         {errors.email && <span className="error-text">{errors.email}</span>}
                     </div>
 
                     <div className="form-group">
                         <label className="form-label">Message</label>
-                        <textarea
-                            name="message"
-                            value={form.message}
-                            onChange={handleChange}
-                            className="form-textarea"
-                            defaultValue="this is test"
-                            
-                        />
+                        <textarea name="message" value={form.message}  onChange={handleChange} className="form-textarea" />
                         {errors.message && <span className="error-text">{errors.message}</span>}
                     </div>
 
-                    <button type="submit" className="submit-btn">
-                        Submit
-                    </button>
+                    <button type="submit" className="submit-btn"> Submit</button>
                 </form>
 
                 {/* Back button */}
-                <Link href="/" className="back-btn">
+                {/* <Link href="/" className="back-btn">
                     ← Back to Home
-                </Link>
+                </Link> */}
             </div>
         </div>
     );

@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\DetailsController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
@@ -16,6 +16,13 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return Inertia::render('About'); // About.jsx
 });
+
+// Route::get('/details', function () {
+//     return Inertia::render('details'); // details.jsx
+// });
+
+Route::get('/details', [DetailsController::class, 'index']);
+
 Route::get('/react-about', function () {
     $users = ['Mrinal', 'Rahul', 'Sita'];
     return Inertia::render('ReactAbout', [
