@@ -7,21 +7,19 @@ export default function Details() {
   const { users } = usePage().props;
 
   useEffect(() => {
-      const buttons = document.querySelectorAll('.editrec');
+      const buttons = document.querySelectorAll(".editrec");
 
-      buttons.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          alert('Edit clicked!');
-        });
-      });
-
-      // Cleanup when component updates or unmounts
-      return () => {
-        buttons.forEach((btn) => {
-          btn.removeEventListener('click', () => {});
-        });
+      const handleClick = (e) => {
+        const userId = e.target.getAttribute("data-id"); // 👈 get unique id
+        alert("Edit clicked for ID: " + userId);
       };
-    }, [users]);
+
+      buttons.forEach((btn) => btn.addEventListener("click", handleClick));
+
+      return () => {
+        buttons.forEach((btn) => btn.removeEventListener("click", handleClick));
+      };
+  }, [users]);
 
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial' }}>
@@ -45,7 +43,7 @@ export default function Details() {
                 <td>{slno+1}</td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td><input type='button' name='edit' class='editrec' value='Edit'/></td>
+                <td><input type='button' name='edit' data-id={user.id} class='editrec' value='Edit'/></td>
               </tr>
             ))}
           </tbody>
