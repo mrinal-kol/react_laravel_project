@@ -17,6 +17,7 @@ class DetailsController extends Controller
     }
     public function payment()
     {
-        echo "payment";
+        $amt = 200;
+        return view('payment',compact('amt'));
     }
 }

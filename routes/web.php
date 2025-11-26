@@ -3,6 +3,7 @@ use App\Http\Controllers\DetailsController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use App\Http\Controllers\DemoPaymentController;
 
 Route::get('/blade-about', function () {
     $users = ['Mrinal', 'Rahul', 'Sita'];
@@ -17,7 +18,12 @@ Route::get('/about', function () {
     return Inertia::render('About'); // About.jsx
 });
 Route::get('makePayment',[DetailsController::class,'payment'])->name('payment');
+Route::post('/pay/process', [DemoPaymentController::class, 'processPayment']);
+Route::post('/bank/submit', [DemoPaymentController::class, 'bankSubmit']);
+Route::get('/payment-success', [DemoPaymentController::class, 'successPage']);
 
+Route::post('/payu/success', [DemoPaymentController::class, 'successPage'])->name('payu.success');
+Route::post('/payu/failure', [DemoPaymentController::class, 'failurePage'])->name('payu.failure');
 // Route::get('/details', function () {
 //     return Inertia::render('details'); // details.jsx
 // });
