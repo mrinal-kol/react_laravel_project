@@ -51,6 +51,7 @@
             <a href="/services">Services</a>
             <a href="/contact">Contact</a>
             <a href="/details">Details</a>
+            <a href="{{route('payment')}}">Payment</a>
         </nav>
     </header>
 

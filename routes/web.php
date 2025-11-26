@@ -16,6 +16,7 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return Inertia::render('About'); // About.jsx
 });
+Route::get('makePayment',[DetailsController::class,'payment'])->name('payment');
 
 // Route::get('/details', function () {
 //     return Inertia::render('details'); // details.jsx

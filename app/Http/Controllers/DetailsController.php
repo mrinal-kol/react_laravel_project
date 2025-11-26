@@ -15,4 +15,8 @@ class DetailsController extends Controller
             'users' => $users
         ]);
     }
+    public function payment()
+    {
+        echo "payment";
+    }
 }
