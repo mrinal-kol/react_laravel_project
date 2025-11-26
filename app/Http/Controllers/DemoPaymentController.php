@@ -55,8 +55,18 @@ class DemoPaymentController extends Controller
     // Step 3: Success Page (callback from PayU)
     public function successPage(Request $request)
     {
-        $data = $request->all();
-        return view('payment-success', ['data' => $data]);
+        \Log::info("PayU SUCCESS HIT", $request->all());
+
+        return response()->json([
+            'status' => 'SUCCESS RECEIVED',
+            'data' => $request->all()
+        ]);
+        //$data = $request->all();
+        // echo "<pre>";
+        // print_r($request->all());
+        // echo "</pre>";
+        // exit;
+        //return view('payment-success', ['data' => $data]);
     }
 
     // Step 4: Failure Page (callback from PayU)
