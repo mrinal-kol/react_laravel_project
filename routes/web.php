@@ -22,8 +22,8 @@ Route::post('/pay/process', [DemoPaymentController::class, 'processPayment']);
 Route::post('/bank/submit', [DemoPaymentController::class, 'bankSubmit']);
 Route::get('/payment-success', [DemoPaymentController::class, 'successPage']);
 
-Route::post('/payu/success', [DemoPaymentController::class, 'successPage'])->name('payu.success');
-Route::post('/payu/failure', [DemoPaymentController::class, 'failurePage'])->name('payu.failure');
+Route::post('payu/success', [DemoPaymentController::class, 'successPage'])->name('payu.success');
+Route::post('payu/failure', [DemoPaymentController::class, 'failurePage'])->name('payu.failure');
 // Route::get('/details', function () {
 //     return Inertia::render('details'); // details.jsx
 // });
