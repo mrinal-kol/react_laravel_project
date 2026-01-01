@@ -6,7 +6,7 @@
 <body onload="document.forms.payu.submit();">
     <h3>Redirecting to PayU payment page...</h3>
     <form name="payu" method="post" action="https://test.payu.in/_payment">
-        @csrf
+        <!-- @csrf -->
         <input type="hidden" name="key" value="{{ $key }}">
         <input type="hidden" name="txnid" value="{{ $params['txnid'] }}">
         <input type="hidden" name="amount" value="{{ $params['amount'] }}">
