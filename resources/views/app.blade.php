@@ -64,6 +64,10 @@
             text-align: center;
             padding: 5px;
         }
+        .app-bg {
+    min-height: 100vh;
+    background:#FFFF00;
+}
     </style>
 </head>
 
@@ -83,7 +87,7 @@
     </header>
 
     <!-- Body (React pages will load here) -->
-    <main style='background-color: yellow;'>
+    <main class="app-bg">
         @inertia
     </main>
 
