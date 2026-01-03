@@ -76,7 +76,8 @@ Route::post('/contact-submit', function (Request $request) {
         ]);
     }
 });
-
+Route::post('/services-submit', [DemoPaymentController::class, 'add_info']);
+/*
 Route::post('/services-submit', function (Request $request) {
     $request->validate([
         'name' => 'required|string|max:50',
@@ -90,6 +91,7 @@ Route::post('/services-submit', function (Request $request) {
 
     return redirect('/services')->with('success', 'Your request has been submitted successfully!');
 });
+*/
 
 Route::get('/services', function () {
     return Inertia::render('Services');
