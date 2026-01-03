@@ -90,8 +90,8 @@
             font-size: 22px;
             text-align: center;
             border-radius: 10px;
-            border: 2px solid #1d4ed8;
-            background: forestgreen;
+            border: 2px solid black;
+            background: red;
             color: aliceblue;
             font-weight: 600;
         }
