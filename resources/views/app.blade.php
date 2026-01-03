@@ -83,7 +83,7 @@
     </header>
 
     <!-- Body (React pages will load here) -->
-    <main>
+    <main style='background-color: yellow;'>
         @inertia
     </main>
 

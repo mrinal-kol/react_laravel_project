@@ -18,6 +18,6 @@ class DetailsController extends Controller
     public function payment()
     {
         $amt = 200;
-        return view('payment',compact('amt'));
+        return view('paymentNew',compact('amt'));
     }
 }
