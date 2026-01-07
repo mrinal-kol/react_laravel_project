@@ -94,5 +94,5 @@ Route::post('/services-submit', function (Request $request) {
 */
 
 Route::get('/services', function () {
-    return Inertia::render('Services');
+    return Inertia::render('ServicesNew');
 });

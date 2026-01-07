@@ -34,6 +34,7 @@ export default function Details() {
               <th>ID</th>
               <th>Name</th>
               <th>Email</th>
+              <th>Created On</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -43,6 +44,7 @@ export default function Details() {
                 <td>{slno+1}</td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
+                <td>{new Date(user.created_at).toISOString().slice(0,19).replace('T',' ')}</td>
                 <td><input type='button' name='edit' data-id={user.id} class='editrec' value='Edit'/></td>
               </tr>
             ))}

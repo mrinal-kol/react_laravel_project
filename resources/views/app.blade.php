@@ -10,7 +10,7 @@
     <style>
         /* Keep full height for body + sticky footer */
         html, body {
-            height: 100%;
+            /* height: 100%; */
             margin: 0;
         }
 

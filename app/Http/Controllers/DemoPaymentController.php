@@ -22,22 +22,41 @@ class DemoPaymentController extends Controller
 
     public function add_info(Request $request)
     {
-       
-        // 1. Validate request
-        $validated = $request->validate([
-            'name'    => 'required|string|max:50',
-            'email'   => 'required|email',
-            'service' => 'required|string|max:50',
-            'message' => 'required|string|max:500',
-        ]);
+        try {
+            // 1. Validate request
+            $validated = $request->validate([
+                'name'    => 'required|string|max:50',
+                'email'   => 'required|email',
+                'service' => 'required|string|max:50',
+                'message' => 'required|string|max:500',
+            ]);
 
-        // 2. Save to database
-        Contact::create($validated);
+            // 2. Save to database
+            Contact::create($validated);
 
-        // 3. Redirect to view page with success message
-        //return redirect()->route('services.page')->with('success', 'Your request has been submitted successfully!');
-        return redirect('/services')->with('success', 'Your request has been submitted successfully!');
-        
+            // 3. Success response
+            return response()->json([
+                'status'  => true,
+                'message' => 'Your request has been submitted successfully!',
+            ], 200);
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+
+            // ❌ Validation error
+            return response()->json([
+                'status' => false,
+                'message' => 'Validation failed',
+                'errors' => $e->errors(),
+            ], 422);
+
+        } catch (\Exception $e) {
+
+            // ❌ Any other server error
+            return response()->json([
+                'status'  => false,
+                'message' => 'Something went wrong. Please try again later.',
+            ], 500);
+        }
     }
 
     // Step 1: Show Pay Page

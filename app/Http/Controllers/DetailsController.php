@@ -8,7 +8,7 @@ class DetailsController extends Controller
 {
     public function index()
     {
-        $users = Contact::select('id', 'name', 'email')->orderBy('id','desc')->get();
+        $users = Contact::select('id', 'name', 'email','created_at')->orderBy('id','desc')->get();
         //echo "<pre>";
         //print_r($users->toArray());
         return Inertia::render('Details', [
