@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Contact;
+use Illuminate\Http\Request;
 
 class DetailsController extends Controller
 {
@@ -29,5 +30,26 @@ class DetailsController extends Controller
         return response()->json(
             Contact::findOrFail($id)
         );
+    }
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name'    => 'required|string|max:255',
+            'email'   => 'required|email|unique:users,email,' . $id,
+            'message' => 'nullable|string|max:255',
+        ]);
+
+        $user = Contact::findOrFail($id);
+
+        $user->update([
+            'name'    => $request->name,
+            'email'   => $request->email,
+            'message' => $request->message,
+        ]);
+
+        return response()->json([
+            'status'  => true,
+            'message' => 'User updated successfully',
+        ]);
     }
 }

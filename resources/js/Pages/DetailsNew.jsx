@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
-import { usePage } from '@inertiajs/react';
+import React, { useState, useEffect } from 'react';
+import { usePage, router } from '@inertiajs/react';
 import axios from 'axios';
 
 export default function Details() {
   const { users } = usePage().props;
+
+  // page message
+  const [pageMessage, setPageMessage] = useState('');
+  const [messageType, setMessageType] = useState('');
 
   // popup states
   const [showPopup, setShowPopup] = useState(false);
@@ -14,9 +18,18 @@ export default function Details() {
   const [editForm, setEditForm] = useState({
     name: '',
     email: '',
+    message: '',
   });
 
-  // open popup + fetch data
+  // auto hide message
+  useEffect(() => {
+    if (pageMessage) {
+      const timer = setTimeout(() => setPageMessage(''), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [pageMessage]);
+
+  // open popup + fetch user
   const handleEditClick = async (userId) => {
     setShowPopup(true);
     setLoading(true);
@@ -27,11 +40,14 @@ export default function Details() {
       setPopupData(res.data);
 
       setEditForm({
-        name: res.data.name,
-        email: res.data.email,
+        name: res.data.name || '',
+        email: res.data.email || '',
+        message: res.data.message || '',
       });
     } catch (error) {
-      alert('Failed to load user data');
+      setPageMessage('Failed to load user data');
+      setMessageType('error');
+      setShowPopup(false);
     } finally {
       setLoading(false);
     }
@@ -49,15 +65,38 @@ export default function Details() {
 
     try {
       await axios.put(`/users/${popupData.id}`, editForm);
-      alert('User updated successfully');
+
+      setPageMessage('User updated successfully');
+      setMessageType('success');
+
       setShowPopup(false);
+       router.reload({ only: ['users'] });
     } catch (error) {
-      alert('Update failed');
+      setPageMessage('Update failed. Please try again.');
+      setMessageType('error');
     }
   };
 
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial' }}>
+
+      {/* ===== PAGE MESSAGE ===== */}
+      {pageMessage && (
+        <div
+          style={{
+            padding: '10px',
+            marginBottom: '15px',
+            color: messageType === 'success' ? '#155724' : '#721c24',
+            backgroundColor: messageType === 'success' ? '#d4edda' : '#f8d7da',
+            border: '1px solid',
+            borderColor: messageType === 'success' ? '#c3e6cb' : '#f5c6cb',
+            borderRadius: '4px',
+          }}
+        >
+          {pageMessage}
+        </div>
+      )}
+
       <h2>User Details</h2>
 
       {users.length === 0 ? (
@@ -98,10 +137,20 @@ export default function Details() {
         </table>
       )}
 
-      {/* ================= POPUP ================= */}
+      {/* ===== POPUP ===== */}
       {showPopup && (
-        <div style={overlayStyle} onClick={() => setShowPopup(false)}>
-          <div style={popupStyle} onClick={(e) => e.stopPropagation()}>
+        <div
+          style={overlayStyle}
+          onMouseDown={(e) => {
+            if (e.target === e.currentTarget) {
+              setShowPopup(false);
+            }
+          }}
+        >
+          <div
+            style={popupStyle}
+            onMouseDown={(e) => e.stopPropagation()}
+          >
             <h3>Edit User</h3>
 
             {loading && <p>Loading...</p>}
@@ -134,8 +183,9 @@ export default function Details() {
                   <label>Remarks</label><br />
                   <input
                     type="text"
+                    name="message"
                     value={editForm.message}
-                    disabled
+                    onChange={handleChange}
                     style={inputStyle}
                   />
                 </div>
@@ -158,7 +208,7 @@ export default function Details() {
   );
 }
 
-/* ================= STYLES ================= */
+/* ===== STYLES ===== */
 
 const overlayStyle = {
   position: 'fixed',
