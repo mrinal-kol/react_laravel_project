@@ -96,3 +96,5 @@ Route::post('/services-submit', function (Request $request) {
 Route::get('/services', function () {
     return Inertia::render('ServicesNew');
 });
+
+Route::get('/users/{id}', [DetailsController::class, 'show']);
