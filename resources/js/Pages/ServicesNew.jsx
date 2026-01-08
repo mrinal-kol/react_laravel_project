@@ -50,8 +50,8 @@ export default function Services() {
   return (
     <div style={{ padding: "20px", maxWidth: "600px", margin: "0 auto", fontFamily: "Arial" }}>
       <h1>Request a Service</h1>
-      <Link href="/" style={{ display: "inline-block", marginBottom: "20px" }}>
-        ← Back to Home
+      <Link href="/details" style={{ display: "inline-block", marginBottom: "20px" }}>
+        ← Back to Details Page
       </Link>
 
       {successMsg && (
