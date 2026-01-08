@@ -83,19 +83,28 @@ export default function Details() {
       {/* ===== PAGE MESSAGE ===== */}
       {pageMessage && (
         <div
-          style={{
-            padding: '10px',
-            marginBottom: '15px',
-            color: messageType === 'success' ? '#155724' : '#721c24',
-            backgroundColor: messageType === 'success' ? '#d4edda' : '#f8d7da',
+            style={{
+            position: 'fixed',
+            top: '70px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 10000,
+
+            padding: '12px 16px',
+            minWidth: '300px',
+            textAlign: 'center',
+            color: messageType === 'success' ? 'black' : '#721c24',
+            backgroundColor: messageType === 'success' ? 'white' : '#f8d7da',
             border: '1px solid',
             borderColor: messageType === 'success' ? '#c3e6cb' : '#f5c6cb',
-            borderRadius: '4px',
-          }}
+            borderRadius: '6px',
+            boxShadow: '0 4px 10px rgba(0,0,0,0.15)',
+            }}
         >
-          {pageMessage}
+            {pageMessage}
         </div>
-      )}
+    )}
+
 
       <h2>User Details</h2>
 
