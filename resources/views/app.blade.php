@@ -68,6 +68,26 @@
     min-height: 100vh;
     background:#FFFF00;
 }
+
+.btn-primary {
+  padding: 6px 14px;
+  background-color: #0d6efd;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+}
+
+.btn-primary:disabled {
+  background-color: #9ec5fe;
+  cursor: not-allowed;
+}
+
     </style>
 </head>
 

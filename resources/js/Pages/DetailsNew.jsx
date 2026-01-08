@@ -127,7 +127,7 @@ export default function Details() {
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody style={{backgroundColor: 'snow'}} >
             {users.map((user, index) => (
               <tr key={user.id}>
                 <td>{index + 1}</td>
@@ -136,7 +136,7 @@ export default function Details() {
                 <td>{user.message}</td>
                 <td>{new Date(user.created_at).toLocaleString('sv-SE')}</td>
                 <td>
-                  <button onClick={() => handleEditClick(user.id)}>
+                  <button className="btn btn-primary" onClick={() => handleEditClick(user.id)}>
                     Edit
                   </button>
                 </td>
@@ -200,11 +200,11 @@ export default function Details() {
                 </div>
 
                 <div style={{ textAlign: 'right' }}>
-                  <button type="button" onClick={() => setShowPopup(false)}>
+                  <button className="btn btn-primary" type="button" onClick={() => setShowPopup(false)}>
                     Cancel
                   </button>
                   &nbsp;
-                  <button type="submit">
+                  <button className="btn btn-primary" type="submit">
                     Update
                   </button>
                 </div>
