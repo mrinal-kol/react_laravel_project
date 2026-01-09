@@ -21,6 +21,14 @@ export default function Details() {
     message: '',
   });
 
+  const [showAddPopup, setShowAddPopup] = useState(false);
+  const [addForm, setAddForm] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+
   // auto hide message
   useEffect(() => {
     if (pageMessage) {
@@ -28,6 +36,32 @@ export default function Details() {
       return () => clearTimeout(timer);
     }
   }, [pageMessage]);
+
+
+
+  const handleAddSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const res = await axios.post('/services-submit', addForm);
+
+    if (res.data.status) {
+      setPageMessage(res.data.message);
+      setMessageType('success');
+
+      setShowAddPopup(false);
+      router.reload({ only: ['users'] });
+    }
+  } catch (error) {
+    if (error.response?.status === 422) {
+      setPageMessage('Validation failed. Please check inputs.');
+    } else {
+      setPageMessage('Something went wrong. Please try again.');
+    }
+    setMessageType('error');
+  }
+};
+
 
   // open popup + fetch user
   const handleEditClick = async (userId) => {
@@ -52,6 +86,12 @@ export default function Details() {
       setLoading(false);
     }
   };
+
+
+  const handleAddChange = (e) => {
+  const { name, value } = e.target;
+  setAddForm(prev => ({ ...prev, [name]: value }));
+};
 
   // input change
   const handleChange = (e) => {
@@ -106,8 +146,34 @@ export default function Details() {
     )}
 
 
-      <h2>User Details</h2>
+      <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: '15px',
+          }}
+        >
+          <h2 style={{ margin: 0 }}>User Details</h2>
 
+          <button
+            style={{
+              padding: '8px 14px',
+              backgroundColor: '#007bff',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '14px',
+            }}
+            onClick={() => {
+              setAddForm({ name: '', email: '', message: '' });
+              setShowAddPopup(true);
+            }}
+          >
+            + Add New
+          </button>
+        </div>
       {users.length === 0 ? (
         <p>No records found.</p>
       ) : (
@@ -145,6 +211,92 @@ export default function Details() {
           </tbody>
         </table>
       )}
+
+
+      {showAddPopup && (
+  <div
+    style={overlayStyle}
+    onMouseDown={(e) => {
+      if (e.target === e.currentTarget) {
+        setShowAddPopup(false);
+      }
+    }}
+  >
+    <div
+      style={popupStyle}
+      onMouseDown={(e) => e.stopPropagation()}
+    >
+      <h3>Add New User</h3>
+
+      <form onSubmit={handleAddSubmit}>
+        <div style={{ marginBottom: '10px' }}>
+          <label>Name</label><br />
+          <input
+            type="text"
+            name="name"
+            value={addForm.name}
+            onChange={handleAddChange}
+            style={inputStyle}
+            required
+          />
+        </div>
+
+        <div style={{ marginBottom: '10px' }}>
+          <label>Email</label><br />
+          <input
+            type="email"
+            name="email"
+            value={addForm.email}
+            onChange={handleAddChange}
+            style={inputStyle}
+            required
+          />
+        </div>
+         <div style={{ marginBottom: "10px" }}>
+          <label>Service Required:</label><br />
+          <select
+            name="service"
+            value={addForm.service}
+            onChange={handleAddChange}
+            style={{ width: '100%', padding: '8px' }}
+          >
+            <option value="">Select a service</option>
+            <option value="web-design">Web Design</option>
+            <option value="seo">SEO</option>
+            <option value="marketing">Marketing</option>
+          </select>
+          
+        </div>
+        <div style={{ marginBottom: '10px' }}>
+          <label>Remarks</label><br />
+          <input
+            type="text"
+            name="message"
+            value={addForm.message}
+            onChange={handleAddChange}
+            style={inputStyle}
+          />
+        </div>
+
+        <div style={{ textAlign: 'right' }}>
+          <button
+            className="btn btn-primary"
+            type="button"
+            onClick={() => setShowAddPopup(false)}
+          >
+            Cancel
+          </button>
+          &nbsp;
+          <button className="btn btn-primary" type="submit">
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+)}
+
+
 
       {/* ===== POPUP ===== */}
       {showPopup && (
