@@ -76,7 +76,7 @@ Route::post('/contact-submit', function (Request $request) {
         ]);
     }
 });
-Route::post('/services-submit', [DemoPaymentController::class, 'add_info']);
+Route::post('/services-submit', [DetailsController::class, 'add_info']);
 /*
 Route::post('/services-submit', function (Request $request) {
     $request->validate([
