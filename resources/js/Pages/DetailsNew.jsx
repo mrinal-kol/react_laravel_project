@@ -94,9 +94,9 @@ export default function Details() {
             minWidth: '300px',
             textAlign: 'center',
             color: messageType === 'success' ? 'black' : '#721c24',
-            backgroundColor: messageType === 'success' ? 'white' : '#f8d7da',
+            backgroundColor: messageType === 'success' ? '#2BF349' : '#f8d7da',
             border: '1px solid',
-            borderColor: messageType === 'success' ? '#c3e6cb' : '#f5c6cb',
+            borderColor: messageType === 'success' ? 'black' : '#f5c6cb',
             borderRadius: '6px',
             boxShadow: '0 4px 10px rgba(0,0,0,0.15)',
             }}
