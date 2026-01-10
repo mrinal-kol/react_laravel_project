@@ -44,7 +44,7 @@ class DetailsController extends Controller
                 'email' => [
                     'required',
                     'email',
-                    'unique:contact_us,email,' . $id . ',id', // <-- use correct table
+                    //'unique:contact_us,email,' . $id . ',id', // <-- use correct table
                     fn($attr, $value, $fail) => $this->noHtml($attr, $value, $fail),
                 ],
                 'message' => [

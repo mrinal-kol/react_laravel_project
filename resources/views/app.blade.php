@@ -79,6 +79,16 @@
   font-size: 14px;
 }
 
+.btn-cancel {
+  padding: 6px 14px;
+  background-color: orangered;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
 .btn-primary:hover {
   background-color: #0b5ed7;
 }

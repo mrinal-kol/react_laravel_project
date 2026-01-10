@@ -171,7 +171,7 @@ export default function Details() {
         <button
           style={{
             padding: '8px 14px',
-            backgroundColor: '#007bff',
+            backgroundColor: '#ff000d',
             color: '#fff',
             border: 'none',
             borderRadius: '4px',
@@ -307,7 +307,7 @@ export default function Details() {
 
               <div style={{ textAlign: 'right' }}>
                 <button
-                  className="btn btn-primary"
+                  className="btn btn-cancel"
                   type="button"
                   onClick={() => setShowAddPopup(false)}
                 >
@@ -383,7 +383,7 @@ export default function Details() {
 
                 <div style={{ textAlign: 'right' }}>
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-cancel"
                     type="button"
                     onClick={() => setShowPopup(false)}
                   >
