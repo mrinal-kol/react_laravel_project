@@ -99,3 +99,5 @@ Route::get('/services', function () {
 
 Route::get('/users/{id}', [DetailsController::class, 'show']);
 Route::put('/users/{id}', [DetailsController::class, 'update']);
+
+Route::get('MySql-Interview-Question-Answer', [DetailsController::class, 'showpage'])->name('phpmysql');

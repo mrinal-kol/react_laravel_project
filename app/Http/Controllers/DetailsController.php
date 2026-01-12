@@ -172,4 +172,12 @@ class DetailsController extends Controller
             $fail("HTML tags are not allowed in {$attribute}");
         }
     }
+
+    public function showpage()
+    {
+        $amt = 200;
+        return view('mysql_interview_question',compact('amt'));
+        
+        //return view('paymentNew',compact('amt'));
+    }
 }

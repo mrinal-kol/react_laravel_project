@@ -113,6 +113,7 @@
             <a href="/contact">Contact</a>
             <a href="/details">Details</a>
             <a href="{{route('payment')}}">Payment</a>
+            <a href="{{route('phpmysql')}}">PHP MySql Question Answer</a>
         </nav>
     </header>
 
