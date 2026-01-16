@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\DemoPaymentController;
+use App\Models\Contact;
+
+Route::middleware('indiaonly')->group(function () {
 
 Route::get('/blade-about', function () {
     $users = ['Mrinal', 'Rahul', 'Sita'];
@@ -54,7 +57,7 @@ Route::get('/contact', function () {
     return Inertia::render('Contact'); // Contact.jsx
 });
 
-use App\Models\Contact;
+
 
 Route::post('/contact-submit', function (Request $request) {
     $validated = $request->validate([
@@ -99,5 +102,5 @@ Route::get('/services', function () {
 
 Route::get('/users/{id}', [DetailsController::class, 'show']);
 Route::put('/users/{id}', [DetailsController::class, 'update']);
-
-Route::get('MySql-Interview-Question-Answer', [DetailsController::class, 'showpage'])->name('phpmysql');
+});
+Route::get('MySql-Interview-Question-Answer', [DetailsController::class, 'showpage'])->middleware('indiaonly')->name('phpmysql');
