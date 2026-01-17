@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ config('app.name') }}</title>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @viteReactRefresh
     @vite('resources/js/app.jsx')
 

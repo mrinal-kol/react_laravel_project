@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { usePage, router } from '@inertiajs/react';
 import axios from 'axios';
+// import Swal from 'sweetalert2';
 
 export default function Details() {
   const { users } = usePage().props;
@@ -45,6 +46,50 @@ export default function Details() {
     setAddForm((prev) => ({ ...prev, [name]: value }));
   };
 
+ 
+  const handleAddSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const res = await axios.post('/services-submit', addForm);
+
+    if (res.data.status) {
+      // Show SweetAlert success popup
+      Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: res.data.message,
+        timer: 5000,
+        showConfirmButton: false,
+      });
+
+      setAddFormErrors({});
+      setShowAddPopup(false);
+
+      // Reload only the users component (Inertia.js)
+      router.reload({ only: ['users'] });
+    }
+  } catch (error) {
+    if (error.response?.status === 422) {
+      setAddFormErrors(error.response.data.errors || {});
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Validation Error',
+        text: 'Please check the form inputs.',
+      });
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops!',
+        text: 'Something went wrong. Please try again.',
+      });
+    }
+  }
+};
+ 
+ 
+  /*
   const handleAddSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -68,6 +113,7 @@ export default function Details() {
       setMessageType('error');
     }
   };
+  */
 
   // ------------------ Edit User ------------------
   const handleEditClick = async (userId) => {
