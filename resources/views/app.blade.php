@@ -114,6 +114,7 @@
             <a href="/details">Details</a>
             <a href="{{route('payment')}}">Payment</a>
             <a href="{{route('phpmysql')}}">PHP MySql Question Answer</a>
+            <a href="{{url('interview')}}">Interview Project</a>
         </nav>
     </header>
 

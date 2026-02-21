@@ -20,6 +20,11 @@ class DetailsController extends Controller
             'users' => $users
         ]);
     }
+    public  function getPracties()
+    {
+        $users = Contact::select('id', 'name', 'email','created_at','message')->orderBy('id','desc')->get();
+         return response()->json($users);
+    }
     public function payment()
     {
         $amt = 200;

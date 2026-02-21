@@ -80,6 +80,14 @@ Route::post('/contact-submit', function (Request $request) {
     }
 });
 Route::post('/services-submit', [DetailsController::class, 'add_info']);
+//Route::get('interview',['HelloController::class','interview'])->name('interview');
+Route::get('interview',function(){
+    //return view('prepration');
+    return Inertia::render('homeInt');
+});
+Route::get('users',function(DetailsController $controller){
+    return response()->json($controller->getPracties());
+});
 /*
 Route::post('/services-submit', function (Request $request) {
     $request->validate([
