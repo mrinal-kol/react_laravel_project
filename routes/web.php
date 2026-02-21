@@ -88,6 +88,12 @@ Route::get('interview',function(){
 Route::get('users',function(DetailsController $controller){
     return response()->json($controller->getPracties());
 });
+//autoload
+Route::get('autoload',function(){
+    //return view('prepration');
+    return Inertia::render('autoload');
+});
+Route::get('autoloadPage', [DetailsController::class, 'getPractiesPro']);
 /*
 Route::post('/services-submit', function (Request $request) {
     $request->validate([

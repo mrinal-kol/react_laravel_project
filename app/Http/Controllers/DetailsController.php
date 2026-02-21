@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DetailsController extends Controller
 {
@@ -22,8 +23,23 @@ class DetailsController extends Controller
     }
     public  function getPracties()
     {
-        $users = Contact::select('id', 'name', 'email','created_at','message')->orderBy('id','desc')->get();
-         return response()->json($users);
+        //$users = Contact::select('id', 'name', 'email','created_at','message')->orderBy('id','desc')->get();
+        $users = DB::table('student_details')->get();
+        //print_r($user->toArray());
+        return response()->json($users);
+    }
+    
+    public  function getPractiesPro()
+    {
+        
+        $limit = $request->limit ?? 10;
+        $offset = $request->offset ?? 0;
+        $users = DB::table('student_details')
+                    ->offset($offset)
+                    ->limit($limit)
+                    ->get();
+
+        return response()->json($users);
     }
     public function payment()
     {
