@@ -5,6 +5,9 @@ use Inertia\Inertia;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PhpOffice\PhpWord\IOFactory;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class DetailsController extends Controller
 {
@@ -27,6 +30,46 @@ class DetailsController extends Controller
         $users = DB::table('student_details')->get();
         //print_r($user->toArray());
         return response()->json($users);
+    }
+    public function convert(Request $request)
+    {
+        try {
+
+            // validate file
+            $request->validate([
+                'file' => 'required|file|mimes:doc,docx|max:10000'
+            ]);
+
+            if (!$request->hasFile('file')) {
+                return response()->json([
+                    'error' => 'No file uploaded'
+                ], 400);
+            }
+
+            $file = $request->file('file');
+
+            // load doc file
+            $phpWord = IOFactory::load($file->getPathname());
+
+            // convert to HTML
+            $htmlWriter = IOFactory::createWriter($phpWord, 'HTML');
+
+            ob_start();
+            $htmlWriter->save("php://output");
+            $html = ob_get_clean();
+
+            // convert HTML → PDF
+            $pdf = Pdf::loadHTML($html);
+
+            return $pdf->download('file.pdf');
+
+        } catch (\Exception $e) {
+
+            return response()->json([
+                'error' => $e->getMessage(),
+                'line' => $e->getLine()
+            ], 500);
+        }
     }
     
     public  function getPractiesPro()

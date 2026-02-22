@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\DetailsController;
 Route::get('/users', function () {
     return [
         ['id' => 1, 'name' => 'Mrinal'],
@@ -9,4 +9,5 @@ Route::get('/users', function () {
         ['id' => 3, 'name' => 'Sita'],
     ];
 });
+Route::post('/doc-to-pdf', [DetailsController::class, 'convert']);
 ?>

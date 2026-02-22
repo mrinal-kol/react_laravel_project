@@ -93,6 +93,9 @@ Route::get('autoload',function(){
     //return view('prepration');
     return Inertia::render('autoload');
 });
+Route::get('doctopdf',function(){
+return Inertia::render('doctopdf');
+});
 Route::get('autoloadPage', [DetailsController::class, 'getPractiesPro']);
 /*
 Route::post('/services-submit', function (Request $request) {

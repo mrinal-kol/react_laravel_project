@@ -116,6 +116,7 @@
             <a href="{{route('phpmysql')}}">PHP MySql Question Answer</a>
             <a href="{{url('interview')}}">Interview Project</a>
             <a href="{{url('autoload')}}">Auto Load</a>
+            <a href="{{url('doctopdf')}}">Doc to pdf</a>
         </nav>
     </header>
 
