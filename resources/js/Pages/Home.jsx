@@ -32,6 +32,7 @@ export default function Home() {
                         font-family: Arial, sans-serif;
                         margin:0;
                         background:#f4f6f9;
+                        background-color: yellow;
                     }
 
                     .container{

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,11 @@
     @vite('resources/js/app.jsx')
 
     <style>
-       /* small helper to center form in demo */
+    
+     
+        
+
+        /* small helper to center form in demo */
         .pay-form {
             max-width: 600px;
             margin: 0 auto;
@@ -65,7 +70,7 @@
         <main>
             <div class="pay-wrapper">
                 <div class="pay-box">
-                    <h2>Payment Successful!</h2>
+                    <h2>Payment Failed, try after sometime !</h2>
                     <p>Transaction ID: {{ $data['txnid'] }}</p>
                     <p>Amount: ₹{{ $data['amount'] }}</p>
                     <p>Status: {{ $data['status'] }}</p>

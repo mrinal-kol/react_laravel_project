@@ -14,8 +14,8 @@
         <input type="hidden" name="firstname" value="{{ $params['firstname'] }}">
         <input type="hidden" name="email" value="{{ $params['email'] }}">
         <input type="hidden" name="phone" value="{{ $params['phone'] }}">
-        <input type="hidden" name="surl" value="{{ route('payu.success') }}">
-        <input type="hidden" name="furl" value="{{ route('payu.failure') }}">
+        <input type="hidden" name="surl" value="{{route('api/payu.success') }}">
+        <input type="hidden" name="furl" value="{{route('api/payu.failure') }}">
         <input type="hidden" name="hash" value="{{ $hash }}">
         
         <noscript>
