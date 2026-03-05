@@ -264,6 +264,7 @@ export default function Details() {
                 <td>
                   <button
                     className="btn btn-primary"
+                    style = {{cursor:'pointer'}}
                     onClick={() => handleEditClick(user.id)}
                   >
                     Edit
