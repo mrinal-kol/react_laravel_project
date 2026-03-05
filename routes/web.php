@@ -121,3 +121,7 @@ Route::get('/users/{id}', [DetailsController::class, 'show']);
 Route::put('/users/{id}', [DetailsController::class, 'update']);
 });
 Route::get('MySql-Interview-Question-Answer', [DetailsController::class, 'showpage'])->middleware('indiaonly')->name('phpmysql');
+
+Route::get('/error', function () {
+    return view('error');
+})->name('error.page');
