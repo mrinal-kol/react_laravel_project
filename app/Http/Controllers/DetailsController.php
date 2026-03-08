@@ -72,15 +72,20 @@ class DetailsController extends Controller
         }
     }
     
-    public  function getPractiesPro()
+    public function getPractiesPro(Request $request)
     {
-        
-        $limit = $request->limit ?? 10;
-        $offset = $request->offset ?? 0;
-        $users = DB::table('student_details')
-                    ->offset($offset)
-                    ->limit($limit)
-                    ->get();
+        $limit = $request->limit ?? 40;
+        $last_id = $request->last_id ?? null;
+
+        $query = DB::table('student_details')
+                    ->orderBy('id','desc')
+                    ->limit($limit);
+
+        if ($last_id) {
+            $query->where('id','<',$last_id);
+        }
+
+        $users = $query->get();
 
         return response()->json($users);
     }

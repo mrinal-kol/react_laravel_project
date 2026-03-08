@@ -1,29 +1,42 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+
+
 export default function Details() {
+  const [lastId, setLastId] = useState(null); 
   const [data, setData] = useState([]);
   const [offset, setOffset] = useState(0);
-  const limit = 10;
+  const limit = 40;
   const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true); // stop loading
+  
+    // ⭐ important
+  
 
-  // fetch data
   const fetchData = async () => {
-    if (loading) return;
 
-    setLoading(true);
+  if (loading || !hasMore) return;
 
-    const res = await axios.get(
-      `/autoloadPage?limit=${limit}&offset=${offset}`
-    );
+  setLoading(true);
+
+  const res = await axios.get(`/autoloadPage?limit=${limit}&last_id=${lastId ?? ''}`);
+
+  if (res.data.length === 0) {
+    setHasMore(false);
+  } else {
 
     setData(prev => [...prev, ...res.data]);
-    setOffset(prev => prev + limit);
 
-    setLoading(false);
-  };
+    // store last record id
+    const lastRecord = res.data[res.data.length - 1];
+    setLastId(lastRecord.id);
+  }
 
-  // first load
+  setLoading(false);
+};
+
+    // first load
   useEffect(() => {
     fetchData();
   }, []);
@@ -41,19 +54,35 @@ export default function Details() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [offset, loading]);
+  }, [offset, loading, hasMore]);
 
   return (
-    <div>
-      <h1>Students</h1>
+  <div>
+    <h1>Students</h1>
 
-      {data.map(user => (
-        <div key={user.id}>
-          {user.name} — {user.email}
-        </div>
-      ))}
+    <table border="1" width="100%">
+      <thead>
+        <tr>
+          <th>Sl</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>ID</th>
+        </tr>
+      </thead>
 
-      {loading && <p>Loading...</p>}
-    </div>
-  );
+      <tbody>
+        {data.map((user, index) => (
+          <tr key={user.id}>
+            <td>{index + 1}</td>
+            <td>{user.name}</td>
+            <td>{user.email}</td>
+            <td>{user.id}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+    {loading && <p>Loading...</p>}
+  </div>
+);
 }
