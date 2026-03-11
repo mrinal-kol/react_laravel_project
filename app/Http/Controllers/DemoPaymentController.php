@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contracts\PaymentGatewayInterface;
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use App\Services\AddPaymentDetailsService;
 
 class DemoPaymentController extends Controller
 {
@@ -66,8 +67,11 @@ class DemoPaymentController extends Controller
     }
 
     // Step 2: Process Payment → render PayU auto-submit form
-    public function processPayment(Request $request)
+    public function processPayment(Request $request,AddPaymentDetailsService $service)
     {
+       
+        
+
         $params = [
             'txnid' => 'TXN'.time(),
             'amount' => $request->amount,
@@ -83,7 +87,14 @@ class DemoPaymentController extends Controller
         ];
 
         $hash = $this->generateHash($params);
-
+        $payData = array('order_id'=>'TXN'.time(),'amount'=>$request->amount,'status'=>'pending','bank_response'=>'');
+        //$add_details =  new AddPaymentDetailsService();
+        if(!$service->addpaymentdata($payData))
+        {
+            return redirect()->back()->with('error', 'Payment initialization failed');
+            exit;
+        }
+        
         return view('payu-form', [
             'params' => $params,
             'hash' => $hash,
@@ -93,7 +104,7 @@ class DemoPaymentController extends Controller
     }
 
     // Step 3: Success Page (callback from PayU)
-    public function successPage(Request $request)
+    public function successPage(Request $request,AddPaymentDetailsService $service)
     {
         // \Log::info("PayU SUCCESS HIT", $request->all());
 
@@ -101,12 +112,34 @@ class DemoPaymentController extends Controller
         //     'status' => 'SUCCESS RECEIVED',
         //     'data' => $request->all()
         // ]);
-        $data = $request->all();
+        //$data = $request->all();
         // echo "<pre>";
         // print_r($request->all());
         // echo "</pre>";
         // exit;
-        return view('payment-success', ['data' => $data]);
+        $order_id = $request->txnid;
+        //dd($request->all());
+        //echo $order_id ;
+        $data = [
+            'status' => 'success',
+            'bank_response' => json_encode($request->all())
+        ];
+        $result = $service->updatePayment($data,$order_id);
+        //dd($result);
+        //exit;
+        if ($result) 
+        {
+            $rdata = $request->all();
+            return view('payment-success', ['data' => $rdata]);
+            //return redirect()->route('payment-success', ['data' => $rdata]);
+
+        } 
+        else 
+        {
+            $rdata = $request->all();
+            return view('payment-failure', ['data' => $rdata]);
+        }
+        //return view('payment-success', ['data' => $data]);
     }
 
     // Step 4: Failure Page (callback from PayU)

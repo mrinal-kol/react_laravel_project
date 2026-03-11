@@ -29,7 +29,7 @@
 
             <div class="field-group">
                 <label class="amount-label">Amount (INR)</label>
-                <input type="text" name="amount" value="200" class="amount-input" readonly>
+                <input type="text" name="amount" value="200" class="amount-input" >
             </div>
 
             <button type="submit" class="pay-btn">
