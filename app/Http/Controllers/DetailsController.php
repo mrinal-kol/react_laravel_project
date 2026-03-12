@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpWord\IOFactory;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\Payment;
 
 
 class DetailsController extends Controller
@@ -24,6 +25,13 @@ class DetailsController extends Controller
             'users' => $users
         ]);
     }
+
+    public function payment_details()
+    {
+        $data = Payment::all();
+        return Inertia::render('paymentDetail',['payment'=>$data]);
+    }
+
     public  function getPracties()
     {
         //$users = Contact::select('id', 'name', 'email','created_at','message')->orderBy('id','desc')->get();

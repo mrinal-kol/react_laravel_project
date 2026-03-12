@@ -93,6 +93,8 @@ Route::get('autoload',function(){
     //return view('prepration');
     return Inertia::render('autoload');
 });
+
+Route::get('paymentDetails',[DetailsController::class,'payment_details'])->name('paymentDetails');
 Route::get('doctopdf',function(){
 return Inertia::render('doctopdf');
 });
