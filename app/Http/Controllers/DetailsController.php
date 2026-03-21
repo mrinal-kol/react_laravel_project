@@ -26,9 +26,53 @@ class DetailsController extends Controller
         ]);
     }
 
+    public function fetch(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|integer|exists:payment_orders,id',
+        ]);
+
+        //$payment = Payment::find($request->id);
+        $payment = DB::table('payment_orders')->where('id',$request->id)->first();
+        return response()->json(['payment' => $payment]);
+
+        // return response()->json([
+        //     'payment' => $payment
+        // ]);
+        // return Inertia::render('paymentDetail', [
+        //'payment' => $payment
+    //]);
+    //      return response()->json([
+    //     'payment' => $payment
+    // ])->header('X-Inertia', 'false'); 
+    }
+     // Update payment via PUT
+    public function updatesdx(Request $request, $id)
+    {
+        // Validate input
+        $validated = $request->validate([
+            'amount' => 'required|numeric',
+            'status' => 'required|string|max:255',
+        ]);
+
+        // Update the payment in table 'payment_orders'
+        $updated = DB::table('payment_orders')
+                     ->where('id', $id)
+                     ->update([
+                         'amount' => $validated['amount'],
+                         'status' => $validated['status'],
+                         'updated_at' => now()
+                     ]);
+
+        // Return JSON response
+        return response()->json([
+            'message' => 'Payment updated successfully',
+            'updated' => $updated,
+        ]);
+    }
     public function payment_details()
     {
-        $data = Payment::all();
+        $data = Payment::orderby('id','desc')->get();
         return Inertia::render('paymentDetail',['payment'=>$data]);
     }
 

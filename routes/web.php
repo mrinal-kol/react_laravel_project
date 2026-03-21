@@ -127,3 +127,6 @@ Route::get('MySql-Interview-Question-Answer', [DetailsController::class, 'showpa
 Route::get('/error', function () {
     return view('error');
 })->name('error.page');
+
+Route::post('/payments/fetch', [DetailsController::class, 'fetch']);
+Route::put('/payments/{id}', [DetailsController::class, 'updatesdx']); 
