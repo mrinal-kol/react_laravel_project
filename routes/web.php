@@ -130,3 +130,4 @@ Route::get('/error', function () {
 
 Route::post('/payments/fetch', [DetailsController::class, 'fetch']);
 Route::put('/payments/{id}', [DetailsController::class, 'updatesdx']); 
+Route::get('/edituser/{id}', [DetailsController::class, 'edituser'])->name('editUserData');

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "@inertiajs/react";
 
 export default function Details() {
 
@@ -12,6 +13,8 @@ export default function Details() {
       });
   }, []);
 
+ 
+
   return (
     <div>
       <h1>Interview Page</h1>
@@ -23,6 +26,7 @@ export default function Details() {
             <th>Name</th>
             <th>Email</th>
             <th>Message</th>
+            <th>Action</th>
             {/* <th>Date</th> */}
           </tr>
         </thead>
@@ -34,6 +38,9 @@ export default function Details() {
               <td>{user.name}</td>
               <td>{user.email}</td>
               <td>{user.message}</td>
+              <td><a href={`/edituser/${user.id}`}>
+    Edit
+  </a></td>
               {/* <td>{user.created_at}</td> */}
             </tr>
           ))}

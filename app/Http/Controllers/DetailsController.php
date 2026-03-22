@@ -301,4 +301,18 @@ class DetailsController extends Controller
         
         //return view('paymentNew',compact('amt'));
     }
+    public function edituser($id)
+    {
+        $data = DB::table('student_details')->where('id',$id)->get();
+        return Inertia::render('editUser',['usaerdata'=>$data]);
+        // echo "<pre>";
+        // print_r($data->toArray());
+        // echo "</pre>";
+        //echo $id;
+        // $user = User::findOrFail($id);
+
+        // return Inertia::render('EditUser', [
+        //     'user' => $user
+        // ]);
+    }
 }
