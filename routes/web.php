@@ -83,7 +83,8 @@ Route::post('/services-submit', [DetailsController::class, 'add_info']);
 //Route::get('interview',['HelloController::class','interview'])->name('interview');
 Route::get('interview',function(){
     //return view('prepration');
-    return Inertia::render('homeInt');
+    //return Inertia::render('homeInt');
+    return Inertia::render('interviewTask');
 });
 Route::get('users',function(DetailsController $controller){
     return response()->json($controller->getPracties());
