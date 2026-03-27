@@ -84,8 +84,115 @@ Route::post('/services-submit', [DetailsController::class, 'add_info']);
 Route::get('interview',function(){
     //return view('prepration');
     //return Inertia::render('homeInt');
-    return Inertia::render('interviewTask');
+    return Inertia::render('homeInt');
 });
+
+Route::get('interviewTask',function(){
+   
+  $data = [
+        // Department of Applied Mechanics (AM)
+        ["category" => "Publication Dept", "code" => "AM", "org_unit_name" => "Department of Applied Mechanics", "org_unit_type" => "Department", "metric" => "publications", "year" => 2015, "value" => 52],
+        ["category" => "Publication Dept", "code" => "AM", "org_unit_name" => "Department of Applied Mechanics", "org_unit_type" => "Department", "metric" => "publications", "year" => 2016, "value" => 59],
+        ["category" => "Publication Dept", "code" => "AM", "org_unit_name" => "Department of Applied Mechanics", "org_unit_type" => "Department", "metric" => "publications", "year" => 2017, "value" => 91],
+        ["category" => "Publication Dept", "code" => "AM", "org_unit_name" => "Department of Applied Mechanics", "org_unit_type" => "Department", "metric" => "publications", "year" => 2018, "value" => 71],
+        ["category" => "Publication Dept", "code" => "AM", "org_unit_name" => "Department of Applied Mechanics", "org_unit_type" => "Department", "metric" => "publications", "year" => 2019, "value" => 79],
+        ["category" => "Publication Dept", "code" => "AM", "org_unit_name" => "Department of Applied Mechanics", "org_unit_type" => "Department", "metric" => "publications", "year" => 2020, "value" => 69],
+        ["category" => "Publication Dept", "code" => "AM", "org_unit_name" => "Department of Applied Mechanics", "org_unit_type" => "Department", "metric" => "publications", "year" => 2021, "value" => 100],
+        ["category" => "Publication Dept", "code" => "AM", "org_unit_name" => "Department of Applied Mechanics", "org_unit_type" => "Department", "metric" => "publications", "year" => 2022, "value" => 100],
+        ["category" => "Publication Dept", "code" => "AM", "org_unit_name" => "Department of Applied Mechanics", "org_unit_type" => "Department", "metric" => "publications", "year" => 2023, "value" => 164],
+        ["category" => "Publication Dept", "code" => "AM", "org_unit_name" => "Department of Applied Mechanics", "org_unit_type" => "Department", "metric" => "publications", "year" => 2024, "value" => 148],
+        ["category" => "Publication Dept", "code" => "AM", "org_unit_name" => "Department of Applied Mechanics", "org_unit_type" => "Department", "metric" => "publications", "year" => 2025, "value" => 107],
+        ["category" => "Publication Dept", "code" => "AM", "org_unit_name" => "Department of Applied Mechanics", "org_unit_type" => "Department", "metric" => "publications_total_2015_2025", "year" => null, "value" => 1040],
+        ["category" => "Publication Dept", "code" => "AM", "org_unit_name" => "Department of Applied Mechanics", "org_unit_type" => "Department", "metric" => "citations_total", "year" => null, "value" => 14020],
+
+        // Department of Biochemical Engineering and Biotechnology (DBEB)
+        ["category" => "Publication Dept", "code" => "DBEB", "org_unit_name" => "Department of Biochemical Engineering and Biotechnology", "org_unit_type" => "Department", "metric" => "publications", "year" => 2015, "value" => 47],
+        ["category" => "Publication Dept", "code" => "DBEB", "org_unit_name" => "Department of Biochemical Engineering and Biotechnology", "org_unit_type" => "Department", "metric" => "publications", "year" => 2016, "value" => 56],
+        ["category" => "Publication Dept", "code" => "DBEB", "org_unit_name" => "Department of Biochemical Engineering and Biotechnology", "org_unit_type" => "Department", "metric" => "publications", "year" => 2017, "value" => 73],
+        ["category" => "Publication Dept", "code" => "DBEB", "org_unit_name" => "Department of Biochemical Engineering and Biotechnology", "org_unit_type" => "Department", "metric" => "publications", "year" => 2018, "value" => 66],
+        ["category" => "Publication Dept", "code" => "DBEB", "org_unit_name" => "Department of Biochemical Engineering and Biotechnology", "org_unit_type" => "Department", "metric" => "publications", "year" => 2019, "value" => 68],
+        ["category" => "Publication Dept", "code" => "DBEB", "org_unit_name" => "Department of Biochemical Engineering and Biotechnology", "org_unit_type" => "Department", "metric" => "publications", "year" => 2020, "value" => 77],
+        ["category" => "Publication Dept", "code" => "DBEB", "org_unit_name" => "Department of Biochemical Engineering and Biotechnology", "org_unit_type" => "Department", "metric" => "publications", "year" => 2021, "value" => 117],
+        ["category" => "Publication Dept", "code" => "DBEB", "org_unit_name" => "Department of Biochemical Engineering and Biotechnology", "org_unit_type" => "Department", "metric" => "publications", "year" => 2022, "value" => 140],
+        ["category" => "Publication Dept", "code" => "DBEB", "org_unit_name" => "Department of Biochemical Engineering and Biotechnology", "org_unit_type" => "Department", "metric" => "publications", "year" => 2023, "value" => 126],
+        ["category" => "Publication Dept", "code" => "DBEB", "org_unit_name" => "Department of Biochemical Engineering and Biotechnology", "org_unit_type" => "Department", "metric" => "publications", "year" => 2024, "value" => 128],
+        ["category" => "Publication Dept", "code" => "DBEB", "org_unit_name" => "Department of Biochemical Engineering and Biotechnology", "org_unit_type" => "Department", "metric" => "publications", "year" => 2025, "value" => 109],
+        ["category" => "Publication Dept", "code" => "DBEB", "org_unit_name" => "Department of Biochemical Engineering and Biotechnology", "org_unit_type" => "Department", "metric" => "publications_total_2015_2025", "year" => null, "value" => 1007],
+        ["category" => "Publication Dept", "code" => "DBEB", "org_unit_name" => "Department of Biochemical Engineering and Biotechnology", "org_unit_type" => "Department", "metric" => "citations_total", "year" => null, "value" => 21719],
+
+        // Department of Chemical Engineering (CHE)
+        ["category" => "Publication Dept", "code" => "CHE", "org_unit_name" => "Department of Chemical Engineering", "org_unit_type" => "Department", "metric" => "publications", "year" => 2015, "value" => 98],
+        ["category" => "Publication Dept", "code" => "CHE", "org_unit_name" => "Department of Chemical Engineering", "org_unit_type" => "Department", "metric" => "publications", "year" => 2016, "value" => 131],
+        ["category" => "Publication Dept", "code" => "CHE", "org_unit_name" => "Department of Chemical Engineering", "org_unit_type" => "Department", "metric" => "publications", "year" => 2017, "value" => 170],
+        ["category" => "Publication Dept", "code" => "CHE", "org_unit_name" => "Department of Chemical Engineering", "org_unit_type" => "Department", "metric" => "publications", "year" => 2018, "value" => 146],
+        ["category" => "Publication Dept", "code" => "CHE", "org_unit_name" => "Department of Chemical Engineering", "org_unit_type" => "Department", "metric" => "publications", "year" => 2019, "value" => 153],
+        ["category" => "Publication Dept", "code" => "CHE", "org_unit_name" => "Department of Chemical Engineering", "org_unit_type" => "Department", "metric" => "publications", "year" => 2020, "value" => 161],
+        ["category" => "Publication Dept", "code" => "CHE", "org_unit_name" => "Department of Chemical Engineering", "org_unit_type" => "Department", "metric" => "publications", "year" => 2021, "value" => 217],
+        ["category" => "Publication Dept", "code" => "CHE", "org_unit_name" => "Department of Chemical Engineering", "org_unit_type" => "Department", "metric" => "publications", "year" => 2022, "value" => 239],
+        ["category" => "Publication Dept", "code" => "CHE", "org_unit_name" => "Department of Chemical Engineering", "org_unit_type" => "Department", "metric" => "publications", "year" => 2023, "value" => 228],
+        ["category" => "Publication Dept", "code" => "CHE", "org_unit_name" => "Department of Chemical Engineering", "org_unit_type" => "Department", "metric" => "publications", "year" => 2024, "value" => 241],
+        ["category" => "Publication Dept", "code" => "CHE", "org_unit_name" => "Department of Chemical Engineering", "org_unit_type" => "Department", "metric" => "publications", "year" => 2025, "value" => 196],
+        ["category" => "Publication Dept", "code" => "CHE", "org_unit_name" => "Department of Chemical Engineering", "org_unit_type" => "Department", "metric" => "publications_total_2015_2025", "year" => null, "value" => 1980],
+        ["category" => "Publication Dept", "code" => "CHE", "org_unit_name" => "Department of Chemical Engineering", "org_unit_type" => "Department", "metric" => "citations_total", "year" => null, "value" => 43529],
+
+        // Department of Chemistry (CHY)
+        ["category" => "Publication Dept", "code" => "CHY", "org_unit_name" => "Department of Chemistry", "org_unit_type" => "Department", "metric" => "publications", "year" => 2015, "value" => 106],
+        ["category" => "Publication Dept", "code" => "CHY", "org_unit_name" => "Department of Chemistry", "org_unit_type" => "Department", "metric" => "publications", "year" => 2016, "value" => 137],
+        ["category" => "Publication Dept", "code" => "CHY", "org_unit_name" => "Department of Chemistry", "org_unit_type" => "Department", "metric" => "publications", "year" => 2017, "value" => 159],
+        ["category" => "Publication Dept", "code" => "CHY", "org_unit_name" => "Department of Chemistry", "org_unit_type" => "Department", "metric" => "publications", "year" => 2018, "value" => 122],
+        ["category" => "Publication Dept", "code" => "CHY", "org_unit_name" => "Department of Chemistry", "org_unit_type" => "Department", "metric" => "publications", "year" => 2019, "value" => 157],
+        ["category" => "Publication Dept", "code" => "CHY", "org_unit_name" => "Department of Chemistry", "org_unit_type" => "Department", "metric" => "publications", "year" => 2020, "value" => 165],
+        ["category" => "Publication Dept", "code" => "CHY", "org_unit_name" => "Department of Chemistry", "org_unit_type" => "Department", "metric" => "publications", "year" => 2021, "value" => 200],
+        ["category" => "Publication Dept", "code" => "CHY", "org_unit_name" => "Department of Chemistry", "org_unit_type" => "Department", "metric" => "publications", "year" => 2022, "value" => 245],
+        ["category" => "Publication Dept", "code" => "CHY", "org_unit_name" => "Department of Chemistry", "org_unit_type" => "Department", "metric" => "publications", "year" => 2023, "value" => 261],
+        ["category" => "Publication Dept", "code" => "CHY", "org_unit_name" => "Department of Chemistry", "org_unit_type" => "Department", "metric" => "publications", "year" => 2024, "value" => 291],
+        ["category" => "Publication Dept", "code" => "CHY", "org_unit_name" => "Department of Chemistry", "org_unit_type" => "Department", "metric" => "publications", "year" => 2025, "value" => 312],
+        ["category" => "Publication Dept", "code" => "CHY", "org_unit_name" => "Department of Chemistry", "org_unit_type" => "Department", "metric" => "publications_total_2015_2025", "year" => null, "value" => 2155],
+        ["category" => "Publication Dept", "code" => "CHY", "org_unit_name" => "Department of Chemistry", "org_unit_type" => "Department", "metric" => "citations_total", "year" => null, "value" => 36489],
+
+        // Department of Civil Engineering (CE)
+        ["category" => "Publication Dept", "code" => "CE", "org_unit_name" => "Department of Civil Engineering", "org_unit_type" => "Unit", "metric" => "publications", "year" => 2015, "value" => 152],
+        ["category" => "Publication Dept", "code" => "CE", "org_unit_name" => "Department of Civil Engineering", "org_unit_type" => "Unit", "metric" => "publications", "year" => 2016, "value" => 146],
+        ["category" => "Publication Dept", "code" => "CE", "org_unit_name" => "Department of Civil Engineering", "org_unit_type" => "Unit", "metric" => "publications", "year" => 2017, "value" => 161],
+        ["category" => "Publication Dept", "code" => "CE", "org_unit_name" => "Department of Civil Engineering", "org_unit_type" => "Unit", "metric" => "publications", "year" => 2018, "value" => 176],
+        ["category" => "Publication Dept", "code" => "CE", "org_unit_name" => "Department of Civil Engineering", "org_unit_type" => "Unit", "metric" => "publications", "year" => 2019, "value" => 248],
+        ["category" => "Publication Dept", "code" => "CE", "org_unit_name" => "Department of Civil Engineering", "org_unit_type" => "Unit", "metric" => "publications", "year" => 2020, "value" => 270],
+        ["category" => "Publication Dept", "code" => "CE", "org_unit_name" => "Department of Civil Engineering", "org_unit_type" => "Unit", "metric" => "publications", "year" => 2021, "value" => 257],
+        ["category" => "Publication Dept", "code" => "CE", "org_unit_name" => "Department of Civil Engineering", "org_unit_type" => "Unit", "metric" => "publications", "year" => 2022, "value" => 276],
+        ["category" => "Publication Dept", "code" => "CE", "org_unit_name" => "Department of Civil Engineering", "org_unit_type" => "Unit", "metric" => "publications", "year" => 2023, "value" => 351],
+        ["category" => "Publication Dept", "code" => "CE", "org_unit_name" => "Department of Civil Engineering", "org_unit_type" => "Unit", "metric" => "publications", "year" => 2024, "value" => 357],
+        ["category" => "Publication Dept", "code" => "CE", "org_unit_name" => "Department of Civil Engineering", "org_unit_type" => "Unit", "metric" => "publications", "year" => 2025, "value" => 308],
+        ["category" => "Publication Dept", "code" => "CE", "org_unit_name" => "Department of Civil Engineering", "org_unit_type" => "Unit", "metric" => "publications_total_2015_2025", "year" => null, "value" => 2702],
+        ["category" => "Publication Dept", "code" => "CE", "org_unit_name" => "Department of Civil Engineering", "org_unit_type" => "Unit", "metric" => "citations_total", "year" => null, "value" => 50914],
+
+        // Centre for Applied Research in Electronics (CARE)
+        ["category" => "Publication Dept", "code" => "CARE", "org_unit_name" => "Centre for Applied Research in Electronics", "org_unit_type" => "Centre", "metric" => "publications", "year" => 2015, "value" => 46],
+        ["category" => "Publication Dept", "code" => "CARE", "org_unit_name" => "Centre for Applied Research in Electronics", "org_unit_type" => "Centre", "metric" => "publications", "year" => 2016, "value" => 51],
+        ["category" => "Publication Dept", "code" => "CARE", "org_unit_name" => "Centre for Applied Research in Electronics", "org_unit_type" => "Centre", "metric" => "publications", "year" => 2017, "value" => 106],
+        ["category" => "Publication Dept", "code" => "CARE", "org_unit_name" => "Centre for Applied Research in Electronics", "org_unit_type" => "Centre", "metric" => "publications", "year" => 2018, "value" => 78],
+        ["category" => "Publication Dept", "code" => "CARE", "org_unit_name" => "Centre for Applied Research in Electronics", "org_unit_type" => "Centre", "metric" => "publications", "year" => 2019, "value" => 105],
+        ["category" => "Publication Dept", "code" => "CARE", "org_unit_name" => "Centre for Applied Research in Electronics", "org_unit_type" => "Centre", "metric" => "publications", "year" => 2020, "value" => 84],
+        ["category" => "Publication Dept", "code" => "CARE", "org_unit_name" => "Centre for Applied Research in Electronics", "org_unit_type" => "Centre", "metric" => "publications", "year" => 2021, "value" => 119],
+        ["category" => "Publication Dept", "code" => "CARE", "org_unit_name" => "Centre for Applied Research in Electronics", "org_unit_type" => "Centre", "metric" => "publications", "year" => 2022, "value" => 150],
+        ["category" => "Publication Dept", "code" => "CARE", "org_unit_name" => "Centre for Applied Research in Electronics", "org_unit_type" => "Centre", "metric" => "publications", "year" => 2023, "value" => 112],
+        ["category" => "Publication Dept", "code" => "CARE", "org_unit_name" => "Centre for Applied Research in Electronics", "org_unit_type" => "Centre", "metric" => "publications", "year" => 2024, "value" => 105],
+        ["category" => "Publication Dept", "code" => "CARE", "org_unit_name" => "Centre for Applied Research in Electronics", "org_unit_type" => "Centre", "metric" => "publications", "year" => 2025, "value" => 85],
+        ["category" => "Publication Dept", "code" => "CARE", "org_unit_name" => "Centre for Applied Research in Electronics", "org_unit_type" => "Centre", "metric" => "publications_total_2015_2025", "year" => null, "value" => 1041],
+        ["category" => "Publication Dept", "code" => "CARE", "org_unit_name" => "Centre for Applied Research in Electronics", "org_unit_type" => "Centre", "metric" => "citations_total", "year" => null, "value" => 11557],
+
+        // Centre for Biomedical Engineering (CBME)
+        ["category" => "Publication Dept", "code" => "CBME", "org_unit_name" => "Centre for Biomedical Engineering", "org_unit_type" => "Centre", "metric" => "publications", "year" => 2015, "value" => 57],
+        ["category" => "Publication Dept", "code" => "CBME", "org_unit_name" => "Centre for Biomedical Engineering", "org_unit_type" => "Centre", "metric" => "publications", "year" => 2016, "value" => 53],
+        ["category" => "Publication Dept", "code" => "CBME", "org_unit_name" => "Centre for Biomedical Engineering", "org_unit_type" => "Centre", "metric" => "publications", "year" => 2017, "value" => 47],
+        ["category" => "Publication Dept", "code" => "CBME", "org_unit_name" => "Centre for Biomedical Engineering", "org_unit_type" => "Centre", "metric" => "publications", "year" => 2018, "value" => 60],
+        ["category" => "Publication Dept", "code" => "CBME", "org_unit_name" => "Centre for Biomedical Engineering", "org_unit_type" => "Centre", "metric" => "publications", "year" => 2019, "value" => 45],
+        ["category" => "Publication Dept", "code" => "CBME", "org_unit_name" => "Centre for Biomedical Engineering", "org_unit_type" => "Centre", "metric" => "publications", "year" => 2020, "value" => 53],
+        ["category" => "Publication Dept", "code" => "CBME", "org_unit_name" => "Centre for Biomedical Engineering", "org_unit_type" => "Centre", "metric" => "publications", "year" => 2021, "value" => 88],
+        ["category" => "Publication Dept", "code" => "CBME", "org_unit_name" => "Centre for Biomedical Engineering", "org_unit_type" => "Centre", "metric" => "publications", "year" => 2022, "value" => 113],
+    ];
+    return Inertia::render('interviewTask',array('data'=>$data));
+});
+
 Route::get('users',function(DetailsController $controller){
     return response()->json($controller->getPracties());
 });
