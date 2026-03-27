@@ -1,8 +1,9 @@
 <?php
 namespace App\Services;
 use App\Models\Payment;
+use App\Interfaces\UserServiceInterface;
 
-class AddPaymentDetailsService
+class AddPaymentDetailsService  implements UserServiceInterface
 {
     public function addpaymentdata(Array $data)
     {
