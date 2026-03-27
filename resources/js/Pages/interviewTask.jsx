@@ -10,22 +10,30 @@ export default function Dashboard() {
   const { data: serverData } = usePage().props;
   const data = serverData || [];
 
-  const [yearRange, setYearRange] = useState([2015, 2019]);
+  // ✅ Get min and max year dynamically from your data
+  const yearsInData = data.map(item => item.year).filter(y => typeof y === "number");
+const minYear = yearsInData.length ? Math.min(...yearsInData) : 2015;
+const maxYear = yearsInData.length ? Math.max(...yearsInData) : 2019;
+
+
+  // ✅ Single slider for year filter (from minYear to selectedYear)
+  const [year, setYear] = useState(maxYear);
+
   const [orgType, setOrgType] = useState("All");
   const [orgUnit, setOrgUnit] = useState("All");
 
-  // ✅ FILTER
+  // ✅ FILTER: only data from minYear to selected year
   const filtered = useMemo(() => {
     return data.filter(item => {
       return (
         item.metric === "publications" &&
-        item.year >= yearRange[0] &&
-        item.year <= yearRange[1] &&
+        item.year >= minYear &&      // always start from minYear
+        item.year <= year &&         // up to selected year
         (orgType === "All" || item.org_unit_type === orgType) &&
         (orgUnit === "All" || item.org_unit_name === orgUnit)
       );
     });
-  }, [data, yearRange, orgType, orgUnit]);
+  }, [data, year, orgType, orgUnit, minYear]);
 
   // ✅ CARDS
   const totalPublications = filtered.reduce((s, i) => s + i.value, 0);
@@ -33,14 +41,14 @@ export default function Dashboard() {
   const highImpact = 0;
   const orgUnitsIncluded = new Set(filtered.map(i => i.org_unit_name)).size;
 
-  // ✅ LINE DATA (FIXED + SORTED)
+  // ✅ LINE DATA
   const lineData = Object.values(
     filtered.reduce((acc, item) => {
       if (!acc[item.year]) acc[item.year] = { year: item.year, total: 0 };
       acc[item.year].total += item.value;
       return acc;
     }, {})
-  ).sort((a, b) => a.year - b.year);   // 🔥 IMPORTANT
+  ).sort((a, b) => a.year - b.year);
 
   // ✅ BAR DATA
   const topOrg = Object.values(
@@ -84,23 +92,22 @@ export default function Dashboard() {
         </select>
 
         <div>
-          <label>Year: {yearRange[0]} - {yearRange[1]}</label><br/>
+          <label>Year: {minYear} - {year}</label><br/>
 
-          <input type="range" min="2015" max="2019"
-            value={yearRange[0]}
-            onChange={(e)=>setYearRange([+e.target.value, yearRange[1]])}
-          />
-
-          <input type="range" min="2015" max="2019"
-            value={yearRange[1]}
-            onChange={(e)=>setYearRange([yearRange[0], +e.target.value])}
+          {/* ✅ Single slider from minYear to maxYear */}
+          <input
+            type="range"
+            min={minYear}
+            max={maxYear}
+            value={year}
+            onChange={(e) => setYear(+e.target.value)}
           />
         </div>
 
         <button onClick={()=>{
           setOrgType("All");
           setOrgUnit("All");
-          setYearRange([2015, 2019]);
+          setYear(maxYear);  // reset slider to full range
         }}>
           Reset
         </button>
@@ -125,7 +132,7 @@ export default function Dashboard() {
             <XAxis dataKey="year" />
             <YAxis />
             <Tooltip />
-            <Line type="monotone" dataKey="total" stroke="#8884d8" /> {/* 🔥 FIX */}
+            <Line type="monotone" dataKey="total" stroke="#8884d8" />
           </LineChart>
         </div>
 
@@ -135,7 +142,7 @@ export default function Dashboard() {
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
-            <Bar dataKey="value" fill="#82ca9d" /> {/* 🔥 FIX */}
+            <Bar dataKey="value" fill="#82ca9d" />
           </BarChart>
         </div>
 
