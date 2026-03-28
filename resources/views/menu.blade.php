@@ -188,6 +188,7 @@ th{
             <a href="{{route('payment')}}">Payment</a>
             <a href="{{route('phpmysql')}}">PHP MySql Question Answer</a>
             <a href="{{url('interview')}}">Interview Project</a>
+            <a href="{{url('interviewTask')}}">Interview Tusk</a>
             <a href="{{url('autoload')}}">Auto Load</a>
             <a href="{{url('doctopdf')}}">Doc to pdf</a>
             <a href="{{route('paymentDetails')}}">Payment History</a>
