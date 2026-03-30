@@ -315,4 +315,8 @@ class DetailsController extends Controller
         //     'user' => $user
         // ]);
     }
+    public function updateUserDetails(Request $request,$id)
+    {
+        //dd($request->all());
+    }
 }
